@@ -20,13 +20,11 @@
 using GLib;
 using Gtk;
 
-public class Main : Object {
-	const string UI_FILE = "src/canillita.ui";
-	
+public class Main : Object {	
 	public Main () {
 		try {
 			var builder = new Builder ();
-			builder.add_from_file ( UI_FILE );
+			builder.add_from_resource ( "/org/softwareperonista/canillita/canillita.ui" );
 			builder.connect_signals ( this );
 
 			var window = builder.get_object ( "window" ) as Window;
