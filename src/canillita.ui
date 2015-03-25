@@ -172,17 +172,18 @@
                         <property name="vhomogeneous">False</property>
                         <property name="transition_type">over-up-down</property>
                         <child>
-                          <object class="GtkTreeView" id="treeview_ventas_totales">
+                          <object class="GtkTreeView" id="TreeViewVentasTotales">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
                             <property name="model">liststore_ventas_totales</property>
+                            <property name="search_column">0</property>
                             <child internal-child="selection">
-                              <object class="GtkTreeSelection" id="treeview_selection_ventas_totales"/>
+                              <object class="GtkTreeSelection" id="treeview-selection3"/>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_totales_codigo">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_codigo">
                                 <property name="title" translatable="yes">Código</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cellrenderertext_ventas_totales_codigo"/>
@@ -193,7 +194,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_totales_nombre">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_nombre">
                                 <property name="title" translatable="yes">Nombre</property>
                                 <property name="expand">True</property>
                                 <property name="reorderable">True</property>
@@ -206,10 +207,10 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn1">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_precio">
                                 <property name="title" translatable="yes">Precio</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_precio"/>
                                   <attributes>
                                     <attribute name="text">2</attribute>
                                   </attributes>
@@ -217,7 +218,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_totales_stock">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_stock">
                                 <property name="title" translatable="yes">Stock</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cellrenderertext_ventas_totales_stock"/>
@@ -229,12 +230,12 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="name">page2</property>
+                            <property name="name">pagina_ventas_totales</property>
                             <property name="title" translatable="yes">Ventas Totales</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkTreeView" id="treeview_ventas_revistas">
+                          <object class="GtkTreeView" id="TreeViewVentasRevistas">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="hexpand">True</property>
@@ -242,13 +243,13 @@
                             <property name="model">liststore_ventas_revistas</property>
                             <property name="search_column">0</property>
                             <child internal-child="selection">
-                              <object class="GtkTreeSelection" id="treeview-selection_ventas_revistas"/>
+                              <object class="GtkTreeSelection" id="treeview-selection4"/>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_revistas_codigo">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_codigo1">
                                 <property name="title" translatable="yes">Código</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_revistas_codigo"/>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_totales_codigo1"/>
                                   <attributes>
                                     <attribute name="text">0</attribute>
                                   </attributes>
@@ -256,11 +257,12 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_revistas_nombre">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_nombre1">
                                 <property name="title" translatable="yes">Nombre</property>
                                 <property name="expand">True</property>
+                                <property name="reorderable">True</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_revistas_nombre"/>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_totales_nombre1"/>
                                   <attributes>
                                     <attribute name="text">1</attribute>
                                   </attributes>
@@ -268,10 +270,10 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_revistas_precio">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_precio1">
                                 <property name="title" translatable="yes">Precio</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_revistas_precio"/>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_precio1"/>
                                   <attributes>
                                     <attribute name="text">2</attribute>
                                   </attributes>
@@ -279,10 +281,10 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_revistas_stock">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_ventas_stock1">
                                 <property name="title" translatable="yes">Stock</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_revistas_stock"/>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_ventas_totales_stock1"/>
                                   <attributes>
                                     <attribute name="text">3</attribute>
                                   </attributes>
@@ -291,7 +293,7 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="name">page0</property>
+                            <property name="name">pagina_venta_revistas</property>
                             <property name="title" translatable="yes">Revistas</property>
                             <property name="position">1</property>
                           </packing>
