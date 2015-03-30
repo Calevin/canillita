@@ -19,6 +19,6 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/softwareperonista/canillita/canillita-treeview-ventas.ui")]
-public class TreeViewVentas : Gtk.Box {
+public class Canillita.TreeViewVentas : Gtk.TreeView {
         public TreeViewVentas () {}
 }
