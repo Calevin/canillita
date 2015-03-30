@@ -19,12 +19,12 @@ AM_CFLAGS =\
 
 bin_PROGRAMS = canillita
 
-canillita_SOURCES = \
-	canillita.vala canillita-resources.c config.vapi
-
 canillita-resources.c: canillita.gresources.xml
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) $(srcdir)/canillita.gresources.xml \
 	--target=$@ --sourcedir=$(srcdir) --c-name canillita --generate-source
+
+canillita_SOURCES = \
+	canillita.vala canillita-resources.c config.vapi canillita-liststore-ventas.vala
 
 canillita_VALAFLAGS =  --pkg sqlite3 --pkg glib-2.0 --pkg gtk+-3.0  \
 	--pkg gtk+-3.0 --target-glib=2.38 --gresources canillita.gesources.xml

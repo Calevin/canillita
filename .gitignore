@@ -67,6 +67,10 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
+# sources #
+###########
+*.c
+
 aclocal.m4
 autom4te.cache
 config.guess
