@@ -20,7 +20,10 @@ AM_CFLAGS =\
 bin_PROGRAMS = canillita
 
 canillita_SOURCES = \
-	canillita.vala canillita-resources.c config.vapi
+	canillita.vala \
+	canillita-resources.c \
+	config.vapi \
+	$(NULL)
 
 canillita-resources.c: canillita.gresources.xml
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) $(srcdir)/canillita.gresources.xml \
@@ -44,6 +47,8 @@ if NATIVE_WIN32
 canillita_LDFLAGS += -mwindows
 endif
 
+CLEANFILES = \
+	*.c
 
 EXTRA_DIST = $(ui_DATA)
 

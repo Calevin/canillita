@@ -2,6 +2,5 @@
 <gresources>
   <gresource prefix="/org/softwareperonista/canillita">
     <file>canillita.ui</file>
-    <file>canillita-treeview-ventas.ui</file>
   </gresource>
 </gresources>

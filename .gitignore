@@ -104,3 +104,4 @@ po/es.gmo
 po/canillita.pot
 po/stamp-it
 src/.deps/
+*.c
