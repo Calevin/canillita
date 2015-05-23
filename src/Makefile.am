@@ -23,6 +23,7 @@ canillita_SOURCES = \
 	canillita.vala \
 	canillita-resources.c \
 	config.vapi \
+	canillita-liststore-revistas.vala \
 	canillita-revista.vala \
 	$(NULL)
 
