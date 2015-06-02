@@ -18,16 +18,14 @@
  */
 
 public class Revista : GLib.Object {
-	uint64 codigo_de_barras { get; private set; }
-	string nombre { get; private set; }
-	float precio_de_compra { get; private set; }
-	float precio_de_venta { get; private set; } 
-	uint numero { get; private set; }
-	uint anio { get; private set; }
-	 
-	 
-	public Revista () {
+	public uint64 codigo_de_barras;
+	public string nombre;
+	public float precio_de_compra;
+	public float precio_de_venta; 
+	public uint numero;
+	public uint anio;
 
+	public Revista () {
 	}
 
 }
