@@ -1,7 +1,7 @@
 /* -*- Mode: vala; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
 /*
  * revista.vala
- * Copyright (C) 2015 Sebastian Barreto
+ * Copyright (C) 2015 Sebastian Barreto <sebastian.e.barreto@gmail.com>
  *
  * canillita is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
