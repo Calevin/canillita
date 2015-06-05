@@ -17,7 +17,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Revista : GLib.Object {
+public class Canillita.Revista {
 	public uint64 codigo_de_barras;
 	public string nombre;
 	public float precio_de_compra;
