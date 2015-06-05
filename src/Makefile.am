@@ -23,8 +23,8 @@ canillita_SOURCES = \
 	canillita.vala \
 	canillita-resources.c \
 	config.vapi \
-	$(NULL) \
-	revista.vala 
+	revista.vala \
+	$(NULL)
 
 canillita-resources.c: canillita.gresources.xml
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) $(srcdir)/canillita.gresources.xml \
