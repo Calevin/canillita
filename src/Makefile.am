@@ -23,7 +23,7 @@ canillita_SOURCES = \
 	canillita.vala \
 	canillita-resources.c \
 	config.vapi \
-	revista.vala \
+	canillita-revista.vala \
 	$(NULL)
 
 canillita-resources.c: canillita.gresources.xml
