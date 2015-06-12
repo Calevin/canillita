@@ -17,7 +17,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Canillita.Revista {
+public class Canillita.Revista : GLib.Object {
   public uint id;
   public uint stock;
   public uint64 codigo_de_barras;

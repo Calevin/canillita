@@ -26,7 +26,7 @@ canillita_SOURCES = \
 	canillita-liststore-revistas.vala \
 	canillita-revista.vala \
 	canillita-base-de-datos.vala \
-	revista-dao.vala \
+	canillita-revista-dao.vala \
 	$(NULL)
 
 canillita-resources.c: canillita.gresources.xml
