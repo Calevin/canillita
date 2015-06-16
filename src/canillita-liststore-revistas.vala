@@ -2,12 +2,12 @@
 /*
  * canillita-liststore-revistas.vala
  * Copyright (C) 2015 Andres Fernandez <andres@softwareperonista.com.ar>
- * 
+ *
  * canillita is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * canillita is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,30 +20,34 @@
 using Canillita;
 
 public class Canillita.ListStoreRevistas : Gtk.ListStore {
-	private GLib.Array<Revista> revistas;
+  private GLib.Array<Revista> revistas;
 
-	ListStoreRevistas () {
-		Type[] tipos = { typeof(uint64),
-						typeof(string),
-						typeof(uint),
-						typeof(uint),
-						typeof(float),
-						typeof(uint) };
-		this.set_column_types ( tipos );
+  ListStoreRevistas () {
 
-		this.revistas = new GLib.Array<Revista> ();
-	}
+  Type[] tipos = { typeof(uint64),
+                   typeof(string),
+                   typeof(uint),
+                   typeof(uint),
+                   typeof(float),
+                   typeof(uint),
+                   typeof(Canillita.Revista)
+                 };
+    this.set_column_types ( tipos );
 
-	public void agregar ( Revista revista_nueva ) {
-		Gtk.TreeIter iter;
+    this.revistas = new GLib.Array<Revista> ();
+  }
 
-		this.append ( out iter );
-		
-		this.set ( iter, 0, revista_nueva.codigo_de_barras,
-		                      1, revista_nueva.nombre,
-		                      2, revista_nueva.anio,
-		           			  3, revista_nueva.numero,
-		           			  4, revista_nueva.precio_de_venta,
-		           			  5, revista_nueva.stock );
-	}
- }
+  public void agregar ( Revista revista_nueva ) {
+    Gtk.TreeIter iter;
+
+    this.append ( out iter );
+
+    this.set ( iter, 0, revista_nueva.codigo_de_barras,
+                     1, revista_nueva.nombre,
+                     2, revista_nueva.anio,
+                     3, revista_nueva.numero,
+                     4, revista_nueva.precio_de_venta,
+                     5, revista_nueva.stock,
+                     6, revista_nueva );
+  }
+}
