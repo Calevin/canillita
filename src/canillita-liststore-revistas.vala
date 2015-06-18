@@ -41,9 +41,8 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
   public void agregar ( Revista revista_nueva ) {
     Gtk.TreeIter iter;
 
-    if (this.ya_agregado ( revista_nueva )) {
+    if ( !(this.ya_agregado ( revista_nueva )) ) {
       this.append ( out iter );
-
       this.set ( iter, 0, revista_nueva.codigo_de_barras,
                        1, revista_nueva.nombre,
                        2, revista_nueva.anio,
