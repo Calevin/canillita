@@ -29,7 +29,8 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
                      typeof(string),
                      typeof(uint),
                      typeof(uint),
-                     typeof(float),
+                     typeof(string),
+                     typeof(string),
                      typeof(uint),
                      typeof(Revista)
                   , };
@@ -47,9 +48,10 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
                        1, revista_nueva.nombre,
                        2, revista_nueva.anio,
                        3, revista_nueva.numero,
-                       4, revista_nueva.precio_de_venta,
-                       5, revista_nueva.stock,
-                       6, revista_nueva );
+                       4, "$" + revista_nueva.precio_de_compra.to_string (),
+                       5, "$" + revista_nueva.precio_de_venta.to_string (),
+                       6, revista_nueva.stock,
+                       7, revista_nueva );
     }
   }
 
@@ -86,7 +88,7 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
 
     if ( this.get_iter_first ( out iter ) ) {
       do {
-        this.get_value ( iter, 6, out value_revista );
+        this.get_value ( iter, 7, out value_revista );
         revista = value_revista as Revista;
 
         if ( this.sobra ( revista )) {
