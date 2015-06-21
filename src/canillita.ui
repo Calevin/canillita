@@ -1,53 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.1 -->
+<!-- Generated with glade 3.19.0 -->
 <interface>
   <requires lib="gtk+" version="3.16"/>
-  <object class="GtkListStore" id="liststore_ventas_revistas">
-    <columns>
-      <!-- column-name codigo -->
-      <column type="guint64"/>
-      <!-- column-name nombre -->
-      <column type="gchararray"/>
-      <!-- column-name precio -->
-      <column type="gfloat"/>
-      <!-- column-name stock -->
-      <column type="guint"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0">9345665757772</col>
-        <col id="1" translatable="yes">Revista 33</col>
-        <col id="2">25</col>
-        <col id="3">3</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="liststore_ventas_totales">
-    <columns>
-      <!-- column-name codigo -->
-      <column type="guint64"/>
-      <!-- column-name nombre -->
-      <column type="gchararray"/>
-      <!-- column-name precio -->
-      <column type="gfloat"/>
-      <!-- column-name stock -->
-      <column type="guint"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0">9345665757772</col>
-        <col id="1" translatable="yes">Revista 33</col>
-        <col id="2">25</col>
-        <col id="3">3</col>
-      </row>
-      <row>
-        <col id="0">9346776362363</col>
-        <col id="1" translatable="yes">Tiempo Argelino</col>
-        <col id="2">10</col>
-        <col id="3">9</col>
-      </row>
-    </data>
-  </object>
   <object class="GtkWindow" id="window">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -58,14 +12,13 @@
       <object class="GtkStack" id="stack_principal">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="transition_type">crossfade</property>
+        <property name="transition_type">slide-left-right</property>
         <child>
           <object class="GtkGrid" id="grid_general">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">start</property>
-            <property name="margin_top">8</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="row_spacing">10</property>
@@ -76,6 +29,7 @@
                 <property name="halign">center</property>
                 <property name="valign">center</property>
                 <property name="margin_left">2</property>
+                <property name="margin_top">8</property>
                 <property name="label" translatable="yes">Canillita</property>
                 <attributes>
                   <attribute name="font-desc" value="&lt;Introducir valor&gt; 20"/>
@@ -104,7 +58,7 @@
             </child>
           </object>
           <packing>
-            <property name="name">page0</property>
+            <property name="name">pagina_general</property>
             <property name="title" translatable="yes">General</property>
           </packing>
         </child>
@@ -162,10 +116,8 @@
                     <property name="vscroll_policy">natural</property>
                     <child>
                       <object class="GtkStack" id="stack_treeview_ventas">
-                        <property name="width_request">850</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">9</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
                         <property name="hhomogeneous">False</property>
@@ -177,7 +129,6 @@
                             <property name="can_focus">True</property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
-                            <property name="model">liststore_ventas_totales</property>
                             <child internal-child="selection">
                               <object class="GtkTreeSelection" id="treeview_selection_ventas_totales"/>
                             </child>
@@ -239,7 +190,6 @@
                             <property name="can_focus">True</property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
-                            <property name="model">liststore_ventas_revistas</property>
                             <property name="search_column">0</property>
                             <child internal-child="selection">
                               <object class="GtkTreeSelection" id="treeview-selection_ventas_revistas"/>
@@ -308,9 +258,181 @@
             </child>
           </object>
           <packing>
-            <property name="name">page1</property>
+            <property name="name">pagina_ventas</property>
             <property name="title" translatable="yes">Ventas</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="grid_stock">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolledwindow_sidebar_stock">
+                <property name="width_request">150</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">start</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkViewport" id="viewport_sidebar_stock">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkStackSidebar" id="stacksidebar_stock">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="vexpand">True</property>
+                        <property name="stack">stack_treeview_stock</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolledwindow_treeview_stock">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="vscrollbar_policy">never</property>
+                <property name="shadow_type">in</property>
+                <property name="min_content_width">850</property>
+                <child>
+                  <object class="GtkViewport" id="viewport_treeview_stock">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="hscroll_policy">natural</property>
+                    <property name="vscroll_policy">natural</property>
+                    <child>
+                      <object class="GtkStack" id="stack_treeview_stock">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="hhomogeneous">False</property>
+                        <property name="vhomogeneous">False</property>
+                        <property name="transition_type">over-up-down</property>
+                        <child>
+                          <object class="GtkTreeView" id="treeview_stock_revistas">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <property name="search_column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection" id="treeview_selection_stock_revistas"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_codigo">
+                                <property name="title" translatable="yes">Código</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_codigo"/>
+                                  <attributes>
+                                    <attribute name="text">0</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_nombre">
+                                <property name="title" translatable="yes">Nombre</property>
+                                <property name="expand">True</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_nombre"/>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_anio">
+                                <property name="title" translatable="yes">Año</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_anio"/>
+                                  <attributes>
+                                    <attribute name="text">2</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_numero">
+                                <property name="title" translatable="yes">Número</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_numero"/>
+                                  <attributes>
+                                    <attribute name="text">3</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_precio_de_compra">
+                                <property name="title" translatable="yes">Precio de Compra</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_precio_de_compra"/>
+                                  <attributes>
+                                    <attribute name="text">4</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_precio_de_venta">
+                                <property name="title" translatable="yes">Precio de Venta</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_precio_de_venta"/>
+                                  <attributes>
+                                    <attribute name="text">5</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_stock">
+                                <property name="title" translatable="yes">Stock</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_stock"/>
+                                  <attributes>
+                                    <attribute name="text">6</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="name">pagina_stock_revistas</property>
+                            <property name="title" translatable="yes">Revistas</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="name">pagina_stock</property>
+            <property name="title" translatable="yes">Stock</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
@@ -333,6 +455,16 @@
             <property name="can_focus">False</property>
             <property name="stack">stack_principal</property>
           </object>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator_headerbar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+            <property name="position">1</property>
+          </packing>
         </child>
       </object>
     </child>
