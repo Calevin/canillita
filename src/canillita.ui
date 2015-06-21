@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.1 -->
+<!-- Generated with glade 3.19.0 -->
 <interface>
   <requires lib="gtk+" version="3.16"/>
   <object class="GtkWindow" id="window">
@@ -358,7 +358,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_precio">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_anio">
                                 <property name="title" translatable="yes">Año</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_anio"/>
@@ -369,7 +369,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_stock">
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_numero">
                                 <property name="title" translatable="yes">Número</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_numero"/>
@@ -380,10 +380,10 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-                                <property name="title" translatable="yes">Precio</property>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_precio_de_compra">
+                                <property name="title" translatable="yes">Precio de Compra</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revista_precio"/>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_precio_de_compra"/>
                                   <attributes>
                                     <attribute name="text">4</attribute>
                                   </attributes>
@@ -391,12 +391,23 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTreeViewColumn" id="treeviewcolumn3">
-                                <property name="title" translatable="yes">Stock</property>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_precio_de_venta">
+                                <property name="title" translatable="yes">Precio de Venta</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revista_stock"/>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_precio_de_venta"/>
                                   <attributes>
                                     <attribute name="text">5</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="treeviewcolumn_stock_revistas_stock">
+                                <property name="title" translatable="yes">Stock</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cellrenderertext_stock_revistas_stock"/>
+                                  <attributes>
+                                    <attribute name="text">6</attribute>
                                   </attributes>
                                 </child>
                               </object>
