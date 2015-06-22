@@ -17,6 +17,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Canillita;
+
 public class Canillita.BaseDeDatos {
   private Sqlite.Database db;
   private int rc;
@@ -46,11 +48,13 @@ public class Canillita.BaseDeDatos {
     return retorno;
   }
 
-  public Array<GLib.Object> select (string tabla, string campos, string condicion = "" ) {
+  public Array<GLib.Object> select_revistas (string tabla, string campos, string condicion = "" ) {
+    this.conectar ();
     string sql_query = "SELECT " + campos + " FROM " + tabla + " " + condicion;
     Sqlite.Statement stmt;
+
     Array<GLib.Object> objetos = new Array<GLib.Object> ();
-    string[] columnas = {"","","","","","",""};
+    string[] columnas = {"","","","","","","",""};
 
     this.rc = this.db.prepare_v2 ( sql_query, -1, out stmt, null );
 
@@ -70,6 +74,7 @@ public class Canillita.BaseDeDatos {
           for ( int j = 0; j < cols; j++ ) {
             columnas[j] = stmt.column_text ( j );
           }
+          objetos.append_val ( this.instanciar_revista (columnas) );
           break;
         default:
           print ( "Error parsing facts");
@@ -78,7 +83,21 @@ public class Canillita.BaseDeDatos {
 
       this.rc = stmt.step ();
     }
-
     return objetos;
+  }
+  
+  private GLib.Object instanciar_revista ( string [] datos ) {
+    Revista revista = new Revista ();
+    
+    revista.id = int.parse (datos[0]);
+    revista.codigo_de_barras = int.parse (datos[1]);
+    revista.nombre = datos[2];
+    revista.anio = int.parse (datos[3]);
+    revista.numero = int.parse (datos[4]);
+    revista.precio_de_compra = (float) double.parse (datos[5]);
+    revista.precio_de_venta = (float) double.parse (datos[6]);
+    revista.stock = int.parse (datos[7]);
+
+    return revista as GLib.Object;
   }
 }
