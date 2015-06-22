@@ -48,7 +48,7 @@ public class Canillita.BaseDeDatos {
     return retorno;
   }
 
-  public Array<GLib.Object> select_revistas (string tabla, string campos, string condicion = "" ) {
+  public Array<GLib.Object> select (string tabla, string campos, string condicion = "" ) {
     this.conectar ();
     string sql_query = "SELECT " + campos + " FROM " + tabla + " " + condicion;
     Sqlite.Statement stmt;
