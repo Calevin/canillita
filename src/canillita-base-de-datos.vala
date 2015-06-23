@@ -58,15 +58,15 @@ public class Canillita.BaseDeDatos {
 
     this.rc = this.db.prepare_v2 ( sql_query, -1, out stmt, null );
 
-     if ( rc == Sqlite.ERROR ) {
-     stderr.printf ( "Failed to execute the query: %s -%d -%s",
+    if ( rc == Sqlite.ERROR ) {
+      stderr.printf ( "Failed to execute the query: %s -%d -%s",
                       sql_query, this.rc, this.db.errmsg () );
     }
 
     int cols = stmt.column_count ();
-    this.rc = stmt.step ();
 
-    while ( this.rc == Sqlite.ROW ) {
+    do {
+      this.rc = stmt.step ();
       switch ( this.rc  ) {
         case Sqlite.DONE:
           break;
@@ -77,18 +77,16 @@ public class Canillita.BaseDeDatos {
           objetos.append_val ( this.instanciar_revista (columnas) );
           break;
         default:
-          print ( "Error parsing facts");
+          print ( "Error parseando revistas");
           break;
       }
-
-      this.rc = stmt.step ();
-    }
+    } while ( this.rc == Sqlite.ROW );
     return objetos;
   }
-  
+
   private GLib.Object instanciar_revista ( string [] datos ) {
     Revista revista = new Revista ();
-    
+
     revista.id = int.parse (datos[0]);
     revista.codigo_de_barras = int.parse (datos[1]);
     revista.nombre = datos[2];
