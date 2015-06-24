@@ -50,7 +50,7 @@ public class Canillita.BaseDeDatos {
 
   public Array<GLib.Object> select (string tabla, string campos, string condicion = "" ) {
     this.conectar ();
-    string sql_query = "SELECT " + campos + " FROM " + tabla + " " + condicion;
+    string sql_query = "SELECT " + campos + " FROM " + tabla + this.armar_condicion ( condicion );
     Sqlite.Statement stmt;
 
     Array<GLib.Object> objetos = new Array<GLib.Object> ();
@@ -97,5 +97,13 @@ public class Canillita.BaseDeDatos {
     revista.stock = int.parse (datos[7]);
 
     return revista as GLib.Object;
+  }
+
+  private string armar_condicion ( string condicion ) {
+    string retorno = "";
+    if ( condicion != "" ) {
+      retorno = " WHERE " + condicion;
+    }
+    return retorno;
   }
 }
