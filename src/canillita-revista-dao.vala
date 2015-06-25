@@ -17,33 +17,36 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Canillita;
+
 public class Canillita.RevistaDAO {
-    private BaseDeDatos db;
-	private string nombre_tabla_revistas;
-	private string columnas_tabla_revistas;
+  private BaseDeDatos db;
+  private string nombre_tabla_revistas;
+  private string columnas_tabla_revistas;
 
-	public RevistaDAO (BaseDeDatos base_de_datos, string nombre_tabla
-	                   , string columnas_tabla) {
-		this.db = base_de_datos;
-		this.nombre_tabla_revistas = nombre_tabla;
-		this.columnas_tabla_revistas = columnas_tabla;
-	}
-	 
-	public Array<Revista> get_revistas () {
-		string condicion_vacia = "";
-		
-		Array<Revista> revistas = new Array<Revista> ();
-		Array<GLib.Object> retorno_consulta = new Array<GLib.Object> ();
-		
-		retorno_consulta = db.select( nombre_tabla_revistas,
-		                             columnas_tabla_revistas, condicion_vacia );
+  public RevistaDAO () {
+    this.db = new BaseDeDatos ( );
+    this.nombre_tabla_revistas = "revistas, ediciones";
+    this.columnas_tabla_revistas = " ediciones.rowid, codigo_de_barras,
+                                  nombre, anio, numero, precio_de_compra,
+                                  precio_de_venta, stock";;
+    }
 
-		Revista row_revista;
-		for (int i = 0; i < retorno_consulta.length; i++) {
-			row_revista = retorno_consulta.index (i) as Revista;
-			revistas.append_val(row_revista);
-		}
-		
-		return revistas;
-	}
+  public Array<Revista> get_revistas () {
+    string condicion_consulta = "revistas.rowid = ediciones.revista_rowid";
+
+    Array<Revista> revistas = new Array<Revista> ();
+    Array<GLib.Object> retorno_consulta = new Array<GLib.Object> ();
+
+    retorno_consulta = db.select( nombre_tabla_revistas,
+                        columnas_tabla_revistas, condicion_consulta );
+
+    Revista row_revista;
+    for (int i = 0; i < retorno_consulta.length; i++) {
+        row_revista = retorno_consulta.index (i) as Revista;
+        revistas.append_val(row_revista);
+    }
+
+  return revistas;
+  }
 }
