@@ -20,71 +20,70 @@
 using Canillita;
 
 public class Canillita.BaseDeDatos {
-  private Sqlite.Database db;
-  private int rc;
-  private string nombre_db;
 
-  public BaseDeDatos ( string nombre_base_de_datos ) {
-    this.nombre_db = nombre_base_de_datos;
-  }
+  private static bool conectar ( out Sqlite.Database db ) {
+    bool retorno = true;
 
-  private bool conectar () {
-    var retorno = true;
+    int rc = Sqlite.Database.open ( "canillita.db", out db );
 
-    this.rc = Sqlite.Database.open ( this.nombre_db, out this.db );
-
-    if ( this.rc != Sqlite.OK ) {
+    if ( rc != Sqlite.OK ) {
       stderr.printf ( "Could not open the data base" + ": %d, %s\n",
-                      this.rc, this.db.errmsg () );
+                      rc, db.errmsg () );
       retorno = false;
     }
 
-    this.rc = this.db.exec ("PRAGMA foreign_keys=on", null, null);
+    rc = db.exec ("PRAGMA foreign_keys=on", null, null);
 
-    if ( this.rc != Sqlite.OK ) {
-      stderr.printf ( "[SQL ERROR] error: %d, %s\n", this.rc, this.db.errmsg () );
+    if ( rc != Sqlite.OK ) {
+      stderr.printf ( "[SQL ERROR] error: %d, %s\n", rc, db.errmsg () );
     }
 
     return retorno;
   }
 
-  public Array<GLib.Object> select (string tabla, string campos, string condicion = "" ) {
-    this.conectar ();
-    string sql_query = "SELECT " + campos + " FROM " + tabla + this.armar_condicion ( condicion );
-    Sqlite.Statement stmt;
+  public static Array<GLib.Object> select (string tabla, string campos, string condicion = "" ) {
+    Sqlite.Database db;
+    int rc;
 
     Array<GLib.Object> objetos = new Array<GLib.Object> ();
-    string[] columnas = {"","","","","","","",""};
 
-    this.rc = this.db.prepare_v2 ( sql_query, -1, out stmt, null );
+    if ( BaseDeDatos.conectar ( out db ) ) {
+      string sql_query = "SELECT " + campos + " FROM " + tabla + BaseDeDatos.armar_condicion ( condicion );
+      Sqlite.Statement stmt;
 
-    if ( rc == Sqlite.ERROR ) {
-      stderr.printf ( "Failed to execute the query: %s -%d -%s",
-                      sql_query, this.rc, this.db.errmsg () );
-    }
+      string[] columnas = {"","","","","","","",""};
 
-    int cols = stmt.column_count ();
+      rc = db.prepare_v2 ( sql_query, -1, out stmt, null );
 
-    do {
-      this.rc = stmt.step ();
-      switch ( this.rc  ) {
-        case Sqlite.DONE:
-          break;
-        case Sqlite.ROW:
-          for ( int j = 0; j < cols; j++ ) {
-            columnas[j] = stmt.column_text ( j );
-          }
-          objetos.append_val ( this.instanciar_revista (columnas) );
-          break;
-        default:
-          print ( "Error parseando revistas");
-          break;
+      if ( rc == Sqlite.ERROR ) {
+        stderr.printf ( "Failed to execute the query: %s -%d -%s",
+                        sql_query, rc, db.errmsg () );
       }
-    } while ( this.rc == Sqlite.ROW );
+
+      int cols = stmt.column_count ();
+
+      do {
+        rc = stmt.step ();
+        switch ( rc  ) {
+          case Sqlite.DONE:
+            break;
+          case Sqlite.ROW:
+            for ( int j = 0; j < cols; j++ ) {
+              columnas[j] = stmt.column_text ( j );
+            }
+            objetos.append_val ( BaseDeDatos.instanciar_revista (columnas) );
+            break;
+          default:
+            print ( "Error parseando revistas");
+            break;
+        }
+      } while ( rc == Sqlite.ROW );
+    }
+    
     return objetos;
   }
 
-  private GLib.Object instanciar_revista ( string [] datos ) {
+  private static GLib.Object instanciar_revista ( string [] datos ) {
     Revista revista = new Revista ();
 
     revista.id = int.parse (datos[0]);
@@ -99,7 +98,7 @@ public class Canillita.BaseDeDatos {
     return revista as GLib.Object;
   }
 
-  private string armar_condicion ( string condicion ) {
+  private static string armar_condicion ( string condicion ) {
     string retorno = "";
     if ( condicion != "" ) {
       retorno = " WHERE " + condicion;
