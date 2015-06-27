@@ -32,7 +32,7 @@ public class Canillita.BaseDeDatos {
       retorno = false;
     }
 
-    rc = db.exec ("PRAGMA foreign_keys=on", null, null);
+    rc = db.exec ( "PRAGMA foreign_keys=on", null, null );
 
     if ( rc != Sqlite.OK ) {
       stderr.printf ( "[SQL ERROR] error: %d, %s\n", rc, db.errmsg () );
@@ -41,7 +41,7 @@ public class Canillita.BaseDeDatos {
     return retorno;
   }
 
-  public static Array<GLib.Object> select (string tabla, string campos, string condicion = "" ) {
+  public static Array<GLib.Object> select ( string tabla, string campos, string condicion = "" ) {
     Sqlite.Database db;
     int rc;
 
@@ -74,7 +74,7 @@ public class Canillita.BaseDeDatos {
             objetos.append_val ( BaseDeDatos.instanciar_revista (columnas) );
             break;
           default:
-            print ( "Error parseando revistas");
+            print ( "Error parseando revistas" );
             break;
         }
       } while ( rc == Sqlite.ROW );
@@ -86,14 +86,14 @@ public class Canillita.BaseDeDatos {
   private static GLib.Object instanciar_revista ( string [] datos ) {
     Revista revista = new Revista ();
 
-    revista.id = int.parse (datos[0]);
-    revista.codigo_de_barras = int.parse (datos[1]);
+    revista.id = int.parse ( datos[0] );
+    revista.codigo_de_barras = int.parse ( datos[1] );
     revista.nombre = datos[2];
-    revista.anio = int.parse (datos[3]);
-    revista.numero = int.parse (datos[4]);
-    revista.precio_de_compra = (float) double.parse (datos[5]);
-    revista.precio_de_venta = (float) double.parse (datos[6]);
-    revista.stock = int.parse (datos[7]);
+    revista.anio = int.parse ( datos[3] );
+    revista.numero = int.parse ( datos[4] );
+    revista.precio_de_compra = (float) double.parse ( datos[5] );
+    revista.precio_de_venta = (float) double.parse ( datos[6] );
+    revista.stock = int.parse ( datos[7] );
 
     return revista as GLib.Object;
   }
