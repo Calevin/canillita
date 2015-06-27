@@ -21,23 +21,22 @@ using Canillita;
 
 public class Canillita.RevistaDAO {
 
-  public static string get_nombre_tabla_revistas () {
+  private static string get_nombre_tabla_revistas () {
     return "revistas, ediciones";
   }
 
-  public static string get_columnas_tabla_revistas () {
+  private static string get_columnas_tabla_revistas () {
     return " ediciones.rowid, codigo_de_barras, nombre, anio, numero, 
         precio_de_compra, precio_de_venta, stock";
   }	 
 
   public static Array<Revista> get_revistas () {
-    BaseDeDatos db = new BaseDeDatos ();
     string condicion_consulta = "revistas.rowid = ediciones.revista_rowid";
 
     Array<Revista> revistas = new Array<Revista> ();
     Array<GLib.Object> retorno_consulta = new Array<GLib.Object> ();
 
-    retorno_consulta = db.select( get_nombre_tabla_revistas (),
+    retorno_consulta = BaseDeDatos.select( get_nombre_tabla_revistas (),
                         get_columnas_tabla_revistas (), condicion_consulta );
 
     Revista row_revista;
