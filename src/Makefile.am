@@ -25,6 +25,7 @@ canillita_SOURCES = \
 	config.vapi \
 	canillita-liststore-revistas.vala \
 	canillita-revista.vala \
+	canillita-base-de-datos.vala \
 	$(NULL)
 
 canillita-resources.c: canillita.gresources.xml
