@@ -80,7 +80,7 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
     return de_mas;
   }
 
-  private void eliminar_sobrantes ( ) {
+  private void eliminar_sobrantes () {
     Gtk.TreeIter iter;
     Value value_revista;
     Revista revista;
@@ -91,7 +91,7 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
         this.get_value ( iter, 7, out value_revista );
         revista = value_revista as Revista;
 
-        if ( this.sobra ( revista )) {
+        if ( this.sobra ( revista ) ) {
           this.remove (iter);
           flag = this.get_iter_first ( out iter );
         } else {
@@ -104,7 +104,7 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
   public void agregar_revistas ( Array<Revista> revistas_nuevas ) {
     if ( revistas_nuevas.length > 0 ) {
       for ( int i = 0; i < revistas_nuevas.length; i++ ) {
-        this.agregar ( revistas_nuevas.index (i));
+        this.agregar ( revistas_nuevas.index (i) );
       }
       this.revistas = new Array<Revista> ();
 
