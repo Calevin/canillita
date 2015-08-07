@@ -38,8 +38,32 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
 
     this.revistas = new Array<Revista> ();
   }
+// Este es le método que se va a usar para carcar el liststore
+  public void agregar_revistas ( Array<Revista> revistas_nuevas ) {
+    // se fija si el array del parámetro no está vacío.
+    if ( revistas_nuevas.length > 0 ) {
+      //agrega los items del array al liststore
+      for ( int i = 0; i < revistas_nuevas.length; i++ ) {
+        this.agregar ( revistas_nuevas.index (i) );
+      }
+      //resetea el array interno.
+      this.revistas = new Array<Revista> ();
+      //carga el array interno con los nuevo ítmes del array del parámetro.
+      for ( int i = 0; i < revistas_nuevas.length; i++ ) {
+        this.revistas.append_val ( revistas_nuevas.index (i) );
+      }
+      //elimina las filas del liststore que no estaban en el array del parámentro.
+      this.eliminar_sobrantes ();
 
-  public void agregar ( Revista revista_nueva ) {
+    } else {
+      //Si el array del parámetro está vacío limpia el liststore y el array interno.
+      this.clear ();
+      this.revistas = new Array<Revista> ();
+    }
+  }
+
+  //Se fija si ese ítem ya está agregado en el liststore, si no lo agrega.
+  private void agregar ( Revista revista_nueva ) {
     Gtk.TreeIter iter;
 
     if ( !(this.ya_agregado ( revista_nueva )) ) {
@@ -55,7 +79,8 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
     }
   }
 
-  public bool ya_agregado ( Revista revista_nueva ) {
+  //Devuelve true si el item ya está en el liststore
+  private bool ya_agregado ( Revista revista_nueva ) {
     bool resultado = false;
 
     for (int i = 0; i < this.revistas.length; i++ ) {
@@ -67,7 +92,9 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
 
     return resultado;
   }
-  public bool sobra ( Revista sobrante ) {
+
+  //Se fija si el ítem está en el array interno.
+  private bool sobra ( Revista sobrante ) {
     bool de_mas = true;
 
     for ( int i = 0; i < this.revistas.length; i++ ) {
@@ -80,6 +107,7 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
     return de_mas;
   }
 
+  //Elimina los ítems que estén en el liststore pero no en el array interno.
   private void eliminar_sobrantes () {
     Gtk.TreeIter iter;
     Value value_revista;
@@ -98,24 +126,6 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
           flag = this.iter_next ( ref iter );
         }
       } while ( flag );
-    }
-  }
-
-  public void agregar_revistas ( Array<Revista> revistas_nuevas ) {
-    if ( revistas_nuevas.length > 0 ) {
-      for ( int i = 0; i < revistas_nuevas.length; i++ ) {
-        this.agregar ( revistas_nuevas.index (i) );
-      }
-      this.revistas = new Array<Revista> ();
-
-      for ( int i = 0; i < revistas_nuevas.length; i++ ) {
-        this.revistas.append_val ( revistas_nuevas.index (i) );
-      }
-      this.eliminar_sobrantes ();
-
-    } else {
-      this.clear ();
-      this.revistas = new Array<Revista> ();
     }
   }
 }
