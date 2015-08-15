@@ -41,7 +41,8 @@ dnl Check for vala
 AM_PROG_VALAC([0.10.0])
 
 
-PKG_CHECK_MODULES(CANILLITA, [gtk+-3.0 sqlite3 glib-2.0 gtk+-3.0])
+PKG_CHECK_MODULES(CANILLITA, salva
+[gtk+-3.0 sqlite3 glib-2.0 gtk+-3.0])
 
 GLIB_COMPILE_RESOURCES=`$PKG_CONFIG --variable glib_compile_resources gio-2.0` AC_SUBST(GLIB_COMPILE_RESOURCES)
 

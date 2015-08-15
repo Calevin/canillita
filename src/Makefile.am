@@ -25,7 +25,6 @@ canillita_SOURCES = \
 	config.vapi \
 	canillita-liststore-revistas.vala \
 	canillita-revista.vala \
-	canillita-base-de-datos.vala \
 	canillita-revista-dao.vala \
 	$(NULL)
 
@@ -34,7 +33,7 @@ canillita-resources.c: canillita.gresources.xml
 	--target=$@ --sourcedir=$(srcdir) --c-name canillita --generate-source
 
 canillita_VALAFLAGS =  --pkg sqlite3 --pkg glib-2.0 --pkg gtk+-3.0  \
-	--pkg gtk+-3.0 --target-glib=2.38 --gresources canillita.gesources.xml
+	--pkg gtk+-3.0 --pkg salva --target-glib=2.38 --gresources canillita.gesources.xml
 
 canillita_LDFLAGS =
 
