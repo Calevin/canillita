@@ -27,11 +27,7 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
 
     Type[] tipos = { typeof(uint64),
                      typeof(string),
-                     typeof(uint),
-                     typeof(uint),
                      typeof(string),
-                     typeof(string),
-                     typeof(uint),
                      typeof(Revista)
                   , };
     this.set_column_types ( tipos );
@@ -70,12 +66,8 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
       this.append ( out iter );
       this.set ( iter, 0, revista_nueva.codigo_de_barras,
                        1, revista_nueva.nombre,
-                       2, revista_nueva.anio,
-                       3, revista_nueva.numero,
-                       4, "$" + revista_nueva.precio_de_compra.to_string (),
-                       5, "$" + revista_nueva.precio_de_venta.to_string (),
-                       6, revista_nueva.stock,
-                       7, revista_nueva );
+                       2, revista_nueva.descripcion,
+                       3, revista_nueva );
     }
   }
 

@@ -17,16 +17,21 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Canillita.Revista : GLib.Object {
-  public uint id;
-  public uint stock;
-  public uint64 codigo_de_barras;
-  public string nombre;
-  public float precio_de_compra;
-  public float precio_de_venta;
-  public uint numero;
-  public uint anio;
+public class Canillita.Revista : Salva.Entidad {
+  public uint stock { public get; public set; }
+  public uint64 codigo_de_barras { public get; public set; }
+  public string nombre { public get; public set; }
+  public string descripcion { public get; public set; }
 
-  public Revista () {
+  public Revista ( uint id, uint stock, uint64 codigo_de_barras, string nombre, string descripcion ) {
+    base ( id );
+    this._stock = stock;
+    this._codigo_de_barras = codigo_de_barras;
+    this._nombre = nombre;
+    this._descripcion = descripcion;
+  }
+
+  public Revista.Revista_id ( uint id ) {
+    base ( id );
   }
 }

@@ -19,32 +19,26 @@
 
 using Canillita;
 
-public class Canillita.RevistaDAO {
+public class Canillita.RevistaDAO : Salva.EntidadDAO {
 
-  private static string get_nombre_tabla_revistas () {
-    return "revistas, ediciones";
+  public RevistaDAO ( Salva.BaseDeDatos db ) {
+    base ( db );
   }
 
-  private static string get_columnas_tabla_revistas () {
-    return " ediciones.rowid, codigo_de_barras, nombre, anio, numero, 
-        precio_de_compra, precio_de_venta, stock";
-  }	 
-
-  public static Array<Revista> get_revistas () {
-    string condicion_consulta = "revistas.rowid = ediciones.revista_rowid";
-
-    Array<Revista> revistas = new Array<Revista> ();
-    Array<GLib.Object> retorno_consulta = new Array<GLib.Object> ();
-
-    retorno_consulta = BaseDeDatos.select( get_nombre_tabla_revistas (),
-                        get_columnas_tabla_revistas (), condicion_consulta );
-
-    Revista row_revista;
-    for (int i = 0; i < retorno_consulta.length; i++) {
-        row_revista = retorno_consulta.index (i) as Revista;
-        revistas.append_val(row_revista);
-    }
-
-    return revistas;
+  protected override string[] get_propiedades () {
+    return {"id", "codigo_de_barras", "nombre", "descripcion"};
   }
+
+  protected override string get_nombre_tabla () {
+    return "revistas";
+  }
+
+  protected override string get_columnas_tabla () {
+    return "rowid, codigo_de_barras, nombre, descripcion";
+  }
+
+  protected override Type get_tipo_entidad () {
+    return typeof ( Canillita.Revista );
+  }
+
 }
