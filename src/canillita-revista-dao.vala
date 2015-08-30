@@ -21,7 +21,7 @@ using Canillita;
 
 public class Canillita.RevistaDAO : Salva.EntidadDAO {
 
-  public RevistaDAO ( Salva.BaseDeDatos db ) {
+  public RevistaDAO ( Salva.IBaseDeDatos db ) {
     base ( db );
   }
 

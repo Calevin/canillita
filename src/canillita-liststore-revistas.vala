@@ -17,6 +17,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Salva;
 using Canillita;
 using GLib;
 
@@ -24,7 +25,6 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
   private Array<Revista> revistas;
 
   public ListStoreRevistas () {
-
     Type[] tipos = { typeof(uint64),
                      typeof(string),
                      typeof(string),
@@ -33,6 +33,7 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
     this.set_column_types ( tipos );
 
     this.revistas = new Array<Revista> ();
+    this.cargar_revistas ();
   }
 // Este es le método que se va a usar para carcar el liststore
   public void agregar_revistas ( Array<Revista> revistas_nuevas ) {
@@ -118,6 +119,21 @@ public class Canillita.ListStoreRevistas : Gtk.ListStore {
           flag = this.iter_next ( ref iter );
         }
       } while ( flag );
+    }
+  }
+
+  private void cargar_revistas () {
+    Salva.SQLiteBaseDeDatos bdd = new Salva.SQLiteBaseDeDatos ( "canillita.db" );
+    RevistaDAO revista_dao = new RevistaDAO ( bdd );
+    try {
+      Array<Salva.Entidad> entidades = revista_dao.get_todos ();
+      Revista row_revista;
+      for (int i = 0; i < entidades.length; i++) {
+        row_revista = entidades.index (i) as Revista;
+        this.revistas.append_val ( row_revista );
+	  }
+    } catch ( BaseDeDatosError e ) {
+        stdout.printf ( "Error al obtener las revistas%s\n", e.message );
     }
   }
 }
